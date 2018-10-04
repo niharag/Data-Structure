@@ -1,3 +1,10 @@
+/*
+This is a basic Stack program using Linked-List in java.
+Created on:- 04-Oct-2018
+Last Updated:- 04-Oct-2018
+@author:- Nihar Agrawal
+
+*/
 class List{
 	int data;
 	List prev;
