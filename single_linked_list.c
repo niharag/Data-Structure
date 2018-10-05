@@ -1,12 +1,13 @@
 /*
 
-This Code was written by Nihar Agrawal on 22 Sept. 2018, Lasted Updated 22 Sept. 2018.
+This Code was written by Nihar Agrawal on 22 Sept. 2018, Lasted Updated 05 Oct 2018.
 This code contain alot of possible Single Linked List Operations:-
 1) All the Possible Inserting of Node in a Single Linked List
 2) All the Possible Deletion of Node in a Single Linked List
 3) Counting the number of Nodes in the Linked List
 4) Searching for a particular number or Node in the Linked List
 5) Printing the Linked List
+6) Reversing a Linked List using recursion
 Any number of linked list can be made by increasing the number of start pointer. 
 Anyone can take the followeing code and improvise it upon as per their need
 
@@ -26,6 +27,7 @@ struct node* delete(struct node*);
 struct node* delete_beg(struct node*);
 struct node* delete_mid(struct node*,int);
 struct node* delete_all(struct node*);
+struct node* reverse(struct node*);
 int count(struct node*);
 int search(struct node*,int num);
 void print_ll(struct node*);
@@ -34,7 +36,7 @@ int main(){
 	struct node *start = NULL;
 	int i = 1;
 	while(i){
-		printf("Select one of the option - \n1) Insert the Node at the End\n2) Insert the Node at the Beginning\n3) Insert the Node at a particular Position\n4) Delete the Node at the End\n5) Delete the Node at the Beginning\n6) Delete a Particular Node\n7) Delete linked list\n8) Count the number of nodes\n9) Print the Linked List\n10) Search a Number in the Linked List\n0) Exit\n");
+		printf("Select one of the option - \n1) Insert the Node at the End\n2) Insert the Node at the Beginning\n3) Insert the Node at a particular Position\n4) Delete the Node at the End\n5) Delete the Node at the Beginning\n6) Delete a Particular Node\n7) Delete linked list\n8) Count the number of nodes\n9) Print the Linked List\n10) Search a Number in the Linked List\n11) Reverse a Linked LIst using recursion\n0) Exit\n");
 		int n,c = 0,data;
 		scanf("%d",&n);
 		switch(n){
@@ -87,6 +89,10 @@ int main(){
 					printf("Either the linked list is empty or the number to be searched is not present in the Linked List\n");
 				else
 					printf("Number to be searched is found at %d position of the linked list\n",c);
+				break;
+			case 11: start = reverse(start);
+				printf("Resulting Reversed Linked List - ");
+				print_ll(start);
 				break;
 			case 0: i = n;
 				break;
@@ -259,5 +265,21 @@ int search(struct node *ptr,int num){
 			ptr = ptr->next;
 		}
 		return -1;
+	}
+}
+/*------------------*--------------------"Reversing a Linked List using recursion" Function------------------*--------------------*/
+struct node* reverse(struct node *p){
+	if(p == NULL)
+		return NULL;
+	else if(p ->next == NULL)
+		return p;
+	else{
+		struct node *temp = reverse(p->next);
+		struct node *temp1 = temp;
+		while(temp -> next != NULL)
+			temp = temp->next;
+		temp->next = p;
+		p -> next = NULL;
+		return temp1;
 	}
 }
